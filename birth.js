@@ -35,19 +35,27 @@ button.addEventListener("click", function () {
 
     let i = 0;
 
-    function typeWriter() {
+   function typeWriter() {
 
-        if (i < text.length) {
+    if (i < text.length) {
 
-            document.getElementById("message").innerHTML += text.charAt(i);
+        const message = document.getElementById("message");
 
-            i++;
+        message.innerHTML += text.charAt(i);
 
-            setTimeout(typeWriter, 50);
+        // النزول تلقائياً مع استمرار كتابة الرسالة
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
 
-        }
+        i++;
+
+        setTimeout(typeWriter, 50);
 
     }
+
+}
 
     typeWriter();
 
