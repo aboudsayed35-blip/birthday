@@ -20,17 +20,14 @@ document.getElementById("unlockBtn").addEventListener("click", function () {
     const music = document.getElementById("music");
     music.play();
 
-    document.body.innerHTML = `
+    const container = document.querySelector(".container");
 
-    <div class="message-container">
-
-        <h1>❤️ Happy Birthday ❤️</h1>
-
-        <p id="message"></p>
-
-    </div>
-
-    `;
+container.innerHTML = `
+<div class="message-container">
+    <h1>❤️ Happy Birthday ❤️</h1>
+    <p id="message"></p>
+</div>
+`;
 
     const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
 
