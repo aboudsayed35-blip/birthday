@@ -1,13 +1,10 @@
 const button = document.getElementById("startBtn");
 
-
-
 button.addEventListener("click", function () {
     document.getElementById("codeModal").style.display = "flex";
 });
 
 document.getElementById("unlockBtn").addEventListener("click", function () {
-
     const code = document.getElementById("codeInput").value;
 
     if (code !== "09081981") {
@@ -15,20 +12,26 @@ document.getElementById("unlockBtn").addEventListener("click", function () {
         return;
     }
 
+    // إخفاء النافذة وإخفاء واجهة البداية
     document.getElementById("codeModal").style.display = "none";
+    document.querySelector(".container").style.display = "none";
 
+    // تشغيل الموسيقى
     const music = document.getElementById("music");
-    music.play();
+    if (music) {
+        music.play().catch(e => console.log("Music play blocked:", e));
+    }
 
-    const container = document.querySelector(".container");
+    // إنشاء حاوية الرسالة ديناميكياً
+    const messageContainer = document.createElement("div");
+    messageContainer.className = "message-container";
+    messageContainer.innerHTML = `
+        <h1>❤️ Happy Birthday ❤️</h1>
+        <p id="message"></p>
+    `;
+    document.body.appendChild(messageContainer);
 
-container.innerHTML = `
-<div class="message-container">
-    <h1>❤️ Happy Birthday ❤️</h1>
-    <p id="message"></p>
-</div>
-`;
-
+    // النص المراد كتابته
     const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
 
 في هذا اليومِ المميّز، أردنا أن نُقدّمَ لكِ هديّةً مختلفة، ليست هديّةً تُشترى، بل هديّةٌ صُنِعَت بكلِّ محبّةٍ من أجلكِ. ❤️
@@ -46,14 +49,12 @@ container.innerHTML = `
 كُلُّ عامٍ وأنتِ بخيرٍ، ويوم ميلادٍ سعيدٌ يا تسْتَنا منالَ الغالية. ❤️`;
 
     let i = 0;
+    const messageElement = document.getElementById("message");
 
     function typeWriter() {
-
         if (i < text.length) {
-
-            const message = document.getElementById("message");
-
-            message.innerHTML += text.charAt(i);
+            // استخدام textContent لضمان طباعة الأحرف والسطور الجديدة بشكل صحيح
+            messageElement.textContent += text.charAt(i);
 
             window.scrollTo({
                 top: document.body.scrollHeight,
@@ -61,11 +62,10 @@ container.innerHTML = `
             });
 
             i++;
-
-            setTimeout(typeWriter, 50);
+            setTimeout(typeWriter, 40);
         }
     }
 
+    // بدء الطباعة
     typeWriter();
-
 });
