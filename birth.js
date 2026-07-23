@@ -1,6 +1,6 @@
 const button = document.getElementById("startBtn");
 
-const button = document.getElementById("startBtn");
+
 
 button.addEventListener("click", function () {
     document.getElementById("codeModal").style.display = "flex";
