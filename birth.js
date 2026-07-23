@@ -1,38 +1,41 @@
-const button = document.getElementById("startBtn");
+document.addEventListener("DOMContentLoaded", function () {
+    const startBtn = document.getElementById("startBtn");
+    const unlockBtn = document.getElementById("unlockBtn");
+    const codeModal = document.getElementById("codeModal");
+    const codeInput = document.getElementById("codeInput");
+    const errorText = document.getElementById("errorText");
+    const mainContainer = document.querySelector(".container");
 
-button.addEventListener("click", function () {
-    document.getElementById("codeModal").style.display = "flex";
-});
+    // فتح النافذة عند الضغط على زر البداية
+    startBtn.addEventListener("click", function () {
+        codeModal.style.display = "flex";
+    });
 
-document.getElementById("unlockBtn").addEventListener("click", function () {
-    const code = document.getElementById("codeInput").value;
+    // عند الضغط على زر فتح الهديّة
+    unlockBtn.addEventListener("click", function () {
+        const code = codeInput.value.trim();
 
-    if (code !== "09081981") {
-        document.getElementById("errorText").style.display = "block";
-        return;
-    }
+        // التثبت من الكود
+        if (code !== "09081981") {
+            errorText.style.display = "block";
+            return;
+        }
 
-    // إخفاء النافذة وإخفاء واجهة البداية
-    document.getElementById("codeModal").style.display = "none";
-    document.querySelector(".container").style.display = "none";
+        // إخفاء الواجهة والنافذة
+        errorText.style.display = "none";
+        codeModal.style.display = "none";
+        mainContainer.style.display = "none";
 
-    // تشغيل الموسيقى
-    const music = document.getElementById("music");
-    if (music) {
-        music.play().catch(e => console.log("Music play blocked:", e));
-    }
+        // إنشاء مكان الرسالة
+        const messageContainer = document.createElement("div");
+        messageContainer.className = "message-container";
+        messageContainer.innerHTML = `
+            <h1>❤️ Happy Birthday ❤️</h1>
+            <p id="message"></p>
+        `;
+        document.body.appendChild(messageContainer);
 
-    // إنشاء حاوية الرسالة ديناميكياً
-    const messageContainer = document.createElement("div");
-    messageContainer.className = "message-container";
-    messageContainer.innerHTML = `
-        <h1>❤️ Happy Birthday ❤️</h1>
-        <p id="message"></p>
-    `;
-    document.body.appendChild(messageContainer);
-
-    // النص المراد كتابته
-    const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
+        const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
 
 في هذا اليومِ المميّز، أردنا أن نُقدّمَ لكِ هديّةً مختلفة، ليست هديّةً تُشترى، بل هديّةٌ صُنِعَت بكلِّ محبّةٍ من أجلكِ. ❤️
 
@@ -48,24 +51,21 @@ document.getElementById("unlockBtn").addEventListener("click", function () {
 
 كُلُّ عامٍ وأنتِ بخيرٍ، ويوم ميلادٍ سعيدٌ يا تسْتَنا منالَ الغالية. ❤️`;
 
-    let i = 0;
-    const messageElement = document.getElementById("message");
+        let i = 0;
+        const messageElement = document.getElementById("message");
 
-    function typeWriter() {
-        if (i < text.length) {
-            // استخدام textContent لضمان طباعة الأحرف والسطور الجديدة بشكل صحيح
-            messageElement.textContent += text.charAt(i);
-
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: "smooth"
-            });
-
-            i++;
-            setTimeout(typeWriter, 40);
+        function typeWriter() {
+            if (i < text.length) {
+                messageElement.textContent += text.charAt(i);
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+                i++;
+                setTimeout(typeWriter, 40);
+            }
         }
-    }
 
-    // بدء الطباعة
-    typeWriter();
+        typeWriter();
+    });
 });
