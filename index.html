@@ -1,66 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Happy Birthday ❤️</title>
-
     <link rel="stylesheet" href="birth.css">
 </head>
-
 <body>
 
-    <!-- Background -->
-    <div class="background"></div>
+<!-- Background -->
+<div class="background"></div>
 
-    <!-- Main Content -->
-    <div class="container">
+<!-- Main Content -->
+<div class="container">
+    <h1>🎂 Happy Birthday</h1>
+    <h2>To My Dear Aunt ❤️</h2>
+    <p class="subtitle">I have something special for you...</p>
+    <button id="startBtn">Open My Gift 🎁</button>
+</div>
 
-        <h1>🎂 Happy Birthday</h1>
-
-        <h2>To My Dear Aunt ❤️</h2>
-
-        <p class="subtitle">
-            I have something special for you...
-        </p>
-
-        <button id="startBtn">
-            Open My Gift 🎁
-        </button>
-
-    </div>
-
-    <audio id="music" loop>
-    <source src="music/emotional.mp3" type="audio/mp3">
-    </audio>
-
-    <script src="birth.js"></script>
-
-  <div id="codeModal" class="modal">
+<div id="codeModal" class="modal">
     <div class="modal-box">
         <h2>🔐 Secret Gift</h2>
         <p>Enter the code</p>
-
-        <input
-            type="password"
-            id="codeInput"
-            placeholder="********"
-            maxlength="8"
-        >
-
+        <input type="password" id="codeInput" placeholder="********" maxlength="8">
         <p id="errorText">False Code ❌</p>
-
         <button id="unlockBtn">Unlock ❤️</button>
     </div>
 </div>
 
+<script src="birth.js"></script>
 </body>
-
 </html>
