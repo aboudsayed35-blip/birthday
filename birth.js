@@ -1,6 +1,21 @@
 const button = document.getElementById("startBtn");
 
+const button = document.getElementById("startBtn");
+
 button.addEventListener("click", function () {
+    document.getElementById("codeModal").style.display = "flex";
+});
+
+document.getElementById("unlockBtn").addEventListener("click", function () {
+
+    const code = document.getElementById("codeInput").value;
+
+    if (code !== "09081981") {
+        document.getElementById("errorText").style.display = "block";
+        return;
+    }
+
+    document.getElementById("codeModal").style.display = "none";
 
     const music = document.getElementById("music");
     music.play();
@@ -17,7 +32,7 @@ button.addEventListener("click", function () {
 
     `;
 
-  const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
+    const text = `كُلُّ عامٍ وأنتِ بألفِ خيرٍ يا منولَتَنا الغالية. ❤️
 
 في هذا اليومِ المميّز، أردنا أن نُقدّمَ لكِ هديّةً مختلفة، ليست هديّةً تُشترى، بل هديّةٌ صُنِعَت بكلِّ محبّةٍ من أجلكِ. ❤️
 
@@ -35,27 +50,24 @@ button.addEventListener("click", function () {
 
     let i = 0;
 
-   function typeWriter() {
+    function typeWriter() {
 
-    if (i < text.length) {
+        if (i < text.length) {
 
-        const message = document.getElementById("message");
+            const message = document.getElementById("message");
 
-        message.innerHTML += text.charAt(i);
+            message.innerHTML += text.charAt(i);
 
-        // النزول تلقائياً مع استمرار كتابة الرسالة
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
-        });
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
 
-        i++;
+            i++;
 
-        setTimeout(typeWriter, 50);
-
+            setTimeout(typeWriter, 50);
+        }
     }
-
-}
 
     typeWriter();
 
